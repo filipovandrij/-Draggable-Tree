@@ -1,7 +1,16 @@
-import "./App.css";
+import FamilyTree from "./FamilyTree";
 
-function App() {
-  return <div className="App">Hello</div>;
-}
-
+type Props = {};
+const App = (props: Props) => {
+  const familyData = {
+    id: 1,
+    name: "John",
+    children: [],
+  };
+  return (
+    <div>
+      <FamilyTree family={familyData} />
+    </div>
+  );
+};
 export default App;
