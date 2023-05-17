@@ -1,4 +1,5 @@
-import FamilyTree from "./FamilyTree";
+import FamilyTree from "./components/FamilyTree";
+import "./App.scss";
 
 type Props = {};
 const App = (props: Props) => {
@@ -8,7 +9,7 @@ const App = (props: Props) => {
     children: [],
   };
   return (
-    <div>
+    <div className="app">
       <FamilyTree family={familyData} />
     </div>
   );
