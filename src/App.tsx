@@ -12,7 +12,9 @@ const App = (props: Props) => {
   return (
     <div className="app">
       <Header />
-      <FamilyTree family={familyData} />
+      <div className="draggble-container">
+        <FamilyTree family={familyData} />
+      </div>
     </div>
   );
 };
