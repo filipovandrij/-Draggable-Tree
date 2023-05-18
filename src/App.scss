@@ -6,6 +6,8 @@ body {
 .app {
   font-family: "Roboto Condensed", sans-serif;
   .draggble-container {
+    position: relative;
+    overflow: hidden;
     margin: 40px;
     border: 1px dashed black;
     height: 80vh;
@@ -17,6 +19,10 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
   .block {
     display: flex;
     justify-content: center;

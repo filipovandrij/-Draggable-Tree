@@ -10,13 +10,14 @@ interface Person {
 
 interface FamilyTreeProps {
   family: Person;
+  boxRef: any;
 }
 
-const FamilyTree: React.FC<FamilyTreeProps> = ({ family }) => {
+const FamilyTree: React.FC<FamilyTreeProps> = ({ boxRef, family }) => {
   const [familyData, setFamilyData] = useState<Person>(family);
 
   const handleAddChild = (person: Person) => {
-    const childName = prompt("Введите имя нового ребенка:");
+    const childName = prompt("Enter new branche:");
     if (childName) {
       const newChild: Person = {
         id: Math.random(),
@@ -52,8 +53,6 @@ const FamilyTree: React.FC<FamilyTreeProps> = ({ family }) => {
     person.editMode = !person.editMode;
     setFamilyData({ ...familyData });
   };
-
-  console.log(familyData);
 
   const renderFamilyTree = (person: Person): JSX.Element => {
     return (
@@ -98,7 +97,11 @@ const FamilyTree: React.FC<FamilyTreeProps> = ({ family }) => {
     );
   };
 
-  return <div className="family-tree">{renderFamilyTree(familyData)}</div>;
+  return (
+    <div ref={boxRef} className="family-tree">
+      {renderFamilyTree(familyData)}
+    </div>
+  );
 };
 
 export default FamilyTree;
