@@ -41,7 +41,7 @@ const App = (props: Props) => {
       coords.current.startX = e.clientX;
       coords.current.startY = e.clientY;
     };
-    const onMouseUp = (e: MouseEvent) => {
+    const onMouseUp = () => {
       isClicked.current = false;
       coords.current.lastX = box.offsetLeft;
       coords.current.lastY = box.offsetTop;
