@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import FamilyTree from "./components/FamilyTree";
 import "./App.scss";
 import Header from "./container/Header";
@@ -7,9 +7,11 @@ type Props = {};
 const App = (props: Props) => {
   const familyData = {
     id: 1,
-    name: "John",
+    name: "Category",
     children: [],
   };
+
+  const [scale, setScale] = useState("1");
 
   const containerRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -70,9 +72,9 @@ const App = (props: Props) => {
 
   return (
     <div className="app">
-      <Header />
+      <Header scale={scale} setScale={setScale} />
       <div ref={containerRef} className="draggble-container">
-        <FamilyTree boxRef={boxRef} family={familyData} />
+        <FamilyTree scale={scale} boxRef={boxRef} family={familyData} />
       </div>
     </div>
   );

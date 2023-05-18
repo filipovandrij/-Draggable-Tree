@@ -11,9 +11,10 @@ interface Person {
 interface FamilyTreeProps {
   family: Person;
   boxRef: any;
+  scale: string;
 }
 
-const FamilyTree: React.FC<FamilyTreeProps> = ({ boxRef, family }) => {
+const FamilyTree: React.FC<FamilyTreeProps> = ({ scale, boxRef, family }) => {
   const [familyData, setFamilyData] = useState<Person>(family);
 
   const handleAddChild = (person: Person) => {
@@ -98,7 +99,11 @@ const FamilyTree: React.FC<FamilyTreeProps> = ({ boxRef, family }) => {
   };
 
   return (
-    <div ref={boxRef} className="family-tree">
+    <div
+      ref={boxRef}
+      style={{ transform: ` scale(${scale})` }}
+      className="family-tree"
+    >
       {renderFamilyTree(familyData)}
     </div>
   );

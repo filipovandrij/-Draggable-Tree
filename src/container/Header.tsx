@@ -1,24 +1,25 @@
 import { useState } from "react";
 import "./Header.scss";
 
-type Props = {};
+type Props = {
+  scale: string;
+  setScale: (value: string) => void;
+};
 
-const Header = (props: Props) => {
-  const [scale, setScale] = useState("100%");
-
+const Header = ({ scale, setScale }: Props) => {
   const handleIncrease = () => {
     const options = [
-      "25%",
-      "30%",
-      "40%",
-      "50%",
-      "60%",
-      "70%",
-      "80%",
-      "90%",
-      "100%",
-      "125%",
-      "150%",
+      "0.25",
+      "0.30",
+      "0.40",
+      "0.50",
+      "0.60",
+      "0.70",
+      "0.80",
+      "0.90",
+      "1",
+      "1.25",
+      "1.50",
     ];
     const currentIndex = options.indexOf(scale);
     if (currentIndex < options.length - 1) {
@@ -28,17 +29,17 @@ const Header = (props: Props) => {
 
   const handleDecrease = () => {
     const options = [
-      "25%",
-      "30%",
-      "40%",
-      "50%",
-      "60%",
-      "70%",
-      "80%",
-      "90%",
-      "100%",
-      "125%",
-      "150%",
+      "0.25",
+      "0.30",
+      "0.40",
+      "0.50",
+      "0.60",
+      "0.70",
+      "0.80",
+      "0.90",
+      "1",
+      "1.25",
+      "1.50",
     ];
     const currentIndex = options.indexOf(scale);
     if (currentIndex > 0) {
@@ -56,7 +57,9 @@ const Header = (props: Props) => {
       <div className="size-options-box">
         <div className="to-center-options">
           <button className="list-view-btn">LIST VIEW</button>
-          <button className="to-center-btn">&oplus;</button>
+          <button className="to-center-btn" onClick={() => setScale("1")}>
+            &oplus;
+          </button>
         </div>
         <div className="scale-options">
           <button className="decrement-btn" onClick={handleDecrease}>
@@ -67,17 +70,17 @@ const Header = (props: Props) => {
             value={scale}
             onChange={(e) => setScale(e.target.value)}
           >
-            <option value="25%">25%</option>
-            <option value="30%">30%</option>
-            <option value="40%">40%</option>
-            <option value="50%">50%</option>
-            <option value="60%">60%</option>
-            <option value="70%">70%</option>
-            <option value="80%">80%</option>
-            <option value="90%">90%</option>
-            <option value="100%">100%</option>
-            <option value="125%">125%</option>
-            <option value="150%">150%</option>
+            <option value="0.25">25%</option>
+            <option value="0.30">30%</option>
+            <option value="0.40">40%</option>
+            <option value="0.50">50%</option>
+            <option value="0.60">60%</option>
+            <option value="0.70">70%</option>
+            <option value="0.80">80%</option>
+            <option value="0.90">90%</option>
+            <option value="1">100%</option>
+            <option value="1.25">125%</option>
+            <option value="1.50">150%</option>
           </select>
           <button className="increment-btn" onClick={handleIncrease}>
             +
