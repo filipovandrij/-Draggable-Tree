@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Header.scss";
 
 type Props = {
