@@ -1,3 +1,71 @@
+body {
+  height: 100vh;
+  background-color: #f5f7fb;
+}
+
 .app {
-  background-color: red;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.family-tree {
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .block {
+    display: flex;
+    justify-content: center;
+  }
+  .father-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    input {
+      min-width: 20px;
+      max-width: 80px;
+    }
+  }
+  span {
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgb(251, 172, 26);
+  }
+  button {
+    border: none;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: scale(0.8);
+  }
+
+  .delete-button {
+    background-color: red;
+  }
+  .add-button {
+    background-color: rgb(53, 127, 237);
+  }
+  .edit-button {
+    background-color: rgb(3, 161, 3);
+  }
+}
+
+.family-tree > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  padding: 10px;
+}
+
+.family-tree > div > .family-tree {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
 }

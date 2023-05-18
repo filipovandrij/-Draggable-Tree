@@ -1,5 +1,6 @@
 import FamilyTree from "./components/FamilyTree";
 import "./App.scss";
+import Header from "./container/Header";
 
 type Props = {};
 const App = (props: Props) => {
@@ -10,6 +11,7 @@ const App = (props: Props) => {
   };
   return (
     <div className="app">
+      <Header />
       <FamilyTree family={familyData} />
     </div>
   );

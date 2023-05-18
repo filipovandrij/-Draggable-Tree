@@ -5,6 +5,7 @@ interface Person {
   name: string;
   children?: Person[];
   parent?: Person;
+  editMode?: boolean;
 }
 
 interface FamilyTreeProps {
@@ -15,7 +16,7 @@ const FamilyTree: React.FC<FamilyTreeProps> = ({ family }) => {
   const [familyData, setFamilyData] = useState<Person>(family);
 
   const handleAddChild = (person: Person) => {
-    const childName = prompt("Введіть ім'я нового дитини:");
+    const childName = prompt("Введите имя нового ребенка:");
     if (childName) {
       const newChild: Person = {
         id: Math.random(),
@@ -39,25 +40,65 @@ const FamilyTree: React.FC<FamilyTreeProps> = ({ family }) => {
     }
   };
 
+  const handleChangeName = (
+    person: Person,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    person.name = event.target.value;
+    setFamilyData({ ...familyData });
+  };
+
+  const handleToggleEditMode = (person: Person) => {
+    person.editMode = !person.editMode;
+    setFamilyData({ ...familyData });
+  };
+
   console.log(familyData);
 
-  const renderFamilyTree = (person: Person, level: number): JSX.Element => {
+  const renderFamilyTree = (person: Person): JSX.Element => {
     return (
-      <div key={person.id} style={{ marginLeft: `${level * 20}px` }}>
-        <div>
-          <input type="text" defaultValue={person.name} />
-          <button onClick={() => handleAddChild(person)}>+</button>
-          {person.parent && (
-            <button onClick={() => handleRemoveChild(person)}>-</button>
+      <div key={person.id}>
+        <div className="father-block">
+          {person.editMode ? (
+            <input
+              type="text"
+              value={person.name}
+              onChange={(event) => handleChangeName(person, event)}
+            />
+          ) : (
+            <span>{person.name}</span>
           )}
+          <button className="add-button" onClick={() => handleAddChild(person)}>
+            +
+          </button>
+          {person.parent && (
+            <button
+              className="delete-button"
+              onClick={() => handleRemoveChild(person)}
+            >
+              X
+            </button>
+          )}
+          <button
+            className="edit-button"
+            onClick={() => handleToggleEditMode(person)}
+          >
+            {person.editMode ? "✔" : "✎"}
+          </button>
         </div>
-        {person.children &&
-          person.children.map((child) => renderFamilyTree(child, level + 1))}
+        <div className="block">
+          {person.children &&
+            person.children.map((child) => (
+              <React.Fragment key={child.id}>
+                {renderFamilyTree(child)}
+              </React.Fragment>
+            ))}
+        </div>
       </div>
     );
   };
 
-  return <div className="family-tree">{renderFamilyTree(familyData, 0)}</div>;
+  return <div className="family-tree">{renderFamilyTree(familyData)}</div>;
 };
 
 export default FamilyTree;
